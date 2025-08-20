@@ -1,5 +1,5 @@
 import { UsersRepositoryPort } from '@/repositories/users-repository.port'
-import { InvalidCredentialsError } from '@/utils/errors/authenticate/invalid-crendentials.error'
+import { InvalidCredentialsError } from '@/utils/errors'
 import bcrypt from 'bcryptjs'
 
 interface AuthenticateServiceRequest {

@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs'
 import { describe, beforeEach, expect, it } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
-import { InvalidCredentialsError } from '@/utils/errors/authenticate/invalid-crendentials.error'
+import { InvalidCredentialsError } from '@/utils/errors'
 import { AuthenticateService } from './authenticate.service'
 
 describe('Authenticate service', () => {

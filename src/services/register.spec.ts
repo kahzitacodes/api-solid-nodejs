@@ -1,7 +1,7 @@
 import { describe, beforeEach, expect, it } from "vitest";
 import { compare } from "bcryptjs";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
-import { UserEmailAlreadyExists } from "@/utils/errors/authenticate/user-email-already-exists.error";
+import { UserEmailAlreadyExists } from "@/utils/errors";
 import { RegisterService } from "./register.service";
 
 describe("Register service", () => {

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import type { User } from '@prisma/client'
 import { UsersRepositoryPort } from '@/repositories/users-repository.port'
-import { UserEmailAlreadyExists } from '@/utils/errors/authenticate/user-email-already-exists.error'
+import { UserEmailAlreadyExists } from '@/utils/errors'
 
 interface RegisterServiceParams {
   name: string
