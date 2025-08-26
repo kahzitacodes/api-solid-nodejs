@@ -1,12 +1,11 @@
-import { describe, beforeEach, expect, it, vi } from "vitest";
+import { describe, beforeEach, expect, it } from "vitest";
 import * as bcrypt from "bcryptjs";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
 import { InMemoryCheckInRepository } from "@/repositories/in-memory/in-memory-checkin-repository";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
-import { CreateCheckinService } from "./check-in.service";
 import { GetUserCheckInsHistoryService } from "./get-user-check-ins-history.service";
 
-describe("CheckIn service", () => {
+describe("Get user check ins historic service", () => {
   let usersRepository: InMemoryUsersRepository;
   let checkInRepository: InMemoryCheckInRepository;
   let gymRepository: InMemoryGymsRepository;

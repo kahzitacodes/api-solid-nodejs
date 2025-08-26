@@ -3,17 +3,15 @@ import { UsersRepositoryPort } from "@/repositories/users-repository.port";
 import { UserNotFoundError } from "@/utils/errors";
 import { Checkin } from "@prisma/client";
 
-interface GetUserCheckInsHistoryRequest {
+interface GetUserMetricsRequest {
   userId: string;
-  page?: number;
-  pageSize?: number;
 }
 
 interface CreateGymServiceResponse {
-  checkIns: Checkin[];
+  count: number;
 }
 
-export class GetUserCheckInsHistoryService {
+export class GetUserMetricsService {
   constructor(
     private usersRepository: UsersRepositoryPort,
     private checkInRepository: CheckInRepositoryPort
@@ -21,23 +19,19 @@ export class GetUserCheckInsHistoryService {
 
   async execute({
     userId,
-    page = 1,
-    pageSize = 20,
-  }: GetUserCheckInsHistoryRequest): Promise<CreateGymServiceResponse> {
+  }: GetUserMetricsRequest): Promise<CreateGymServiceResponse> {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) {
       throw new UserNotFoundError();
     }
 
-    const checkIns = await this.checkInRepository.findManyByUserId(
+    const count = await this.checkInRepository.countByUserId(
       userId,
-      page,
-      pageSize
     );
 
     return {
-      checkIns,
+      count,
     };
   }
 }

@@ -3,7 +3,7 @@ import { describe, beforeEach, expect, it } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { GetUserProfileService } from './get-user-profile.service'
 
-describe('GetUserProfile service', () => {
+describe('Get user profile service', () => {
   let usersRepository: InMemoryUsersRepository
   let sut: GetUserProfileService
 

@@ -38,4 +38,10 @@ export class InMemoryCheckInRepository implements CheckInRepositoryPort{
       .filter((checkIn) => checkIn.user_id === userId)
       .slice((page - 1) * pageSize, page * pageSize)
   }
+
+  async countByUserId(userId: string): Promise<number> {
+    return this.checkins
+      .filter((checkIn) => checkIn.user_id === userId)
+      .length
+  }
 }

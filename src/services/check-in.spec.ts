@@ -6,7 +6,7 @@ import { InMemoryCheckInRepository } from "@/repositories/in-memory/in-memory-ch
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
 import { CreateCheckinService } from "./check-in.service";
 
-describe("CheckIn service", () => {
+describe("Check In service", () => {
   let usersRepository: InMemoryUsersRepository;
   let checkInRepository: InMemoryCheckInRepository;
   let gymRepository: InMemoryGymsRepository;
