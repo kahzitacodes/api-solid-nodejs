@@ -26,4 +26,17 @@ export class PrismaCheckInRepository implements CheckInRepositoryPort {
 
     return checkInOnSameDate || null
   }
+
+  async findManyByUserId(userId: string, page:number, pageSize: number): Promise<Checkin[]> {
+    return await prisma.checkin.findMany({
+      where: {
+        user_id: userId
+      },
+      orderBy: {
+        created_at: 'asc'
+      },
+      skip: (page - 1) * pageSize,
+      take: pageSize
+    })
+  }
 }
