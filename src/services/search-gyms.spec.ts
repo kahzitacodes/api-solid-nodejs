@@ -1,9 +1,5 @@
 import { describe, beforeEach, expect, it } from "vitest";
-import * as bcrypt from "bcryptjs";
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
-import { InMemoryCheckInRepository } from "@/repositories/in-memory/in-memory-checkin-repository";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
-import { GetUserCheckInsHistoryService } from "./get-user-check-ins-history.service";
 import { SearchGymService } from './search-gyms.service'
 
 describe("Search gyms service", () => {

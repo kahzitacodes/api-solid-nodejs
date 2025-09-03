@@ -12,4 +12,11 @@ export interface GymsRepositoryPort {
     page: number;
     pageSize: number;
   }) => Promise<Gym[]>;
+    findManyNearBy: ({
+    userLatitude,
+    userLongitude,
+  }: {
+    userLatitude: number;
+    userLongitude: number;
+  }) => Promise<Gym[]>;
 }
