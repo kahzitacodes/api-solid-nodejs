@@ -1,11 +1,11 @@
-import { Gym, Prisma } from '@prisma/client'
-import { GymsRepositoryPort } from '../gyms-repository.port'
+import { Gym, Prisma } from "@prisma/client";
+import { GymsRepositoryPort } from "../gyms-repository.port";
 
 export class InMemoryGymsRepository implements GymsRepositoryPort {
-  public items: Gym[] = []
+  public items: Gym[] = [];
 
   async findById(id: string) {
-    return this.items.find(gym => gym.id === id) || null
+    return this.items.find((gym) => gym.id === id) || null;
   }
 
   async create(data: Prisma.GymCreateInput) {
@@ -17,10 +17,24 @@ export class InMemoryGymsRepository implements GymsRepositoryPort {
       latitude: new Prisma.Decimal(Number(data.latitude)),
       longitude: new Prisma.Decimal(Number(data.longitude)),
       created_at: new Date(),
-    }
+    };
 
-    this.items.push(gym)
+    this.items.push(gym);
 
-    return gym
+    return gym;
+  }
+
+  async findMany({
+    query,
+    page,
+    pageSize,
+  }: {
+    query: string;
+    page: number;
+    pageSize: number;
+  }): Promise<Gym[]> {
+    return this.items
+      .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
+      .slice((page - 1) * pageSize, page * pageSize);
   }
 }
