@@ -4,6 +4,27 @@ import { prisma } from '@/lib/prisma'
 import dayjs from 'dayjs'
 
 export class PrismaCheckInRepository implements CheckInRepositoryPort {
+  async findById(id: string) {
+    const checkin = await prisma.checkin.findUnique({
+      where: {
+        id
+      }
+    })
+
+    return checkin
+  }
+
+  async update (checkIn: Checkin) {
+    const updatedCheckIn = await prisma.checkin.update({
+      where: {
+        id: checkIn.id
+      },
+      data: checkIn
+    })
+
+    return updatedCheckIn
+  }
+
   async create(data: Prisma.CheckinUncheckedCreateInput) {
     return await prisma.checkin.create({
       data,
@@ -38,5 +59,15 @@ export class PrismaCheckInRepository implements CheckInRepositoryPort {
       skip: (page - 1) * pageSize,
       take: pageSize
     })
+  }
+
+    async countByUserId(userId: string) {
+    const count = await prisma.checkin.count({
+      where: {
+        user_id: userId
+      }
+    })
+
+    return count
   }
 }
