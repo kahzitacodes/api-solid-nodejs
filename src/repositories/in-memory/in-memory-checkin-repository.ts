@@ -44,4 +44,19 @@ export class InMemoryCheckInRepository implements CheckInRepositoryPort{
       .filter((checkIn) => checkIn.user_id === userId)
       .length
   }
+
+  async findById(id: string): Promise<Checkin | null> {
+    const checkIn = this.checkins.find((checkIn) => checkIn.id === id)
+    return checkIn || null
+  }
+
+  async update(checkIn:Checkin): Promise<Checkin> {
+    const checkInIndex = this.checkins.findIndex((c) => c.id === checkIn.id)
+
+    if (checkInIndex >= 0) {
+      this.checkins[checkInIndex] = checkIn
+    }
+
+    return checkIn
+  }
 }
