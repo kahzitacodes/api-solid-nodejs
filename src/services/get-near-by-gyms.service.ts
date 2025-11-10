@@ -1,22 +1,22 @@
 import type { Gym } from "@prisma/client";
 import { GymsRepositoryPort } from "@/repositories/gyms-repository.port";
 
-interface GetNearByGymParams {
+interface GetNearByGymsParams {
   userLatitude: number;
   userLongitude: number;
 }
 
-interface GetNearByGymServiceResponse {
+interface GetNearByGymsServiceResponse {
   gyms: Gym[];
 }
 
-export class GetNearByGymService {
+export class GetNearByGymsService {
   constructor(private gymsRepository: GymsRepositoryPort) {}
 
   async execute({
     userLatitude,
     userLongitude
-  }: GetNearByGymParams): Promise<GetNearByGymServiceResponse> {
+  }: GetNearByGymsParams): Promise<GetNearByGymsServiceResponse> {
     const gyms = await this.gymsRepository.findManyNearBy({
       userLatitude,
       userLongitude,

@@ -1,2 +1,7 @@
 export * from './make-authenticate-service'
 export * from './make-register-service'
+export * from './make-get-user-check-ins-history-service'
+export * from './make-get-user-metrics-service'
+export * from './make-check-in-service'
+export * from './make-validate-check-in-service'
+export * from './make-search-gyms-service'

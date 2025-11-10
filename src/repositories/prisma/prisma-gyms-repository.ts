@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { GymsRepositoryPort } from '../gyms-repository.port'
 import { Prisma, Gym } from '@prisma/client'
 
-export class PrismaGymnsRepository implements GymsRepositoryPort {
+export class PrismaGymsRepository implements GymsRepositoryPort {
   async create (data: Prisma.GymCreateInput) {
     const gym = await prisma.gym.create({
       data

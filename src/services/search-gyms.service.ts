@@ -1,24 +1,24 @@
 import type { Gym } from "@prisma/client";
 import { GymsRepositoryPort } from "@/repositories/gyms-repository.port";
 
-interface SearchGymParams {
+interface SearchGymsParams {
   query: string;
   page?: number
   pageSize?: number
 }
 
-interface SearchGymServiceResponse {
+interface SearchGymsServiceResponse {
   gyms: Gym[];
 }
 
-export class SearchGymService {
+export class SearchGymsService {
   constructor(private gymsRepository: GymsRepositoryPort) {}
 
   async execute({
     query,
     page = 1,
     pageSize = 20
-  }: SearchGymParams): Promise<SearchGymServiceResponse> {
+  }: SearchGymsParams): Promise<SearchGymsServiceResponse> {
     const gyms = await this.gymsRepository.findMany({
       query,
       page,

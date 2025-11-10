@@ -3,7 +3,7 @@ import { CheckInRepositoryPort } from '../check-in-repository.port'
 import { prisma } from '@/lib/prisma'
 import dayjs from 'dayjs'
 
-export class PrismaCheckInRepository implements CheckInRepositoryPort {
+export class  PrismaCheckInRepository implements CheckInRepositoryPort {
   async findById(id: string) {
     const checkin = await prisma.checkin.findUnique({
       where: {
