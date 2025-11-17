@@ -6,7 +6,7 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
 
   const getUserProfile = makeGetUserProfileService()
 
-  const { user } = await getUserProfile.execute({
+  const user = await getUserProfile.execute({
     userId: request.user.sub,
   })
 
