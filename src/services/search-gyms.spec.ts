@@ -1,14 +1,14 @@
 import { describe, beforeEach, expect, it } from "vitest";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository";
-import { SearchGymService } from './search-gyms.service'
+import { SearchGymsService } from './search-gyms.service'
 
 describe("Search gyms service", () => {
   let gymRepository: InMemoryGymsRepository;
-  let sut: SearchGymService;
+  let sut: SearchGymsService;
 
   beforeEach(async () => {
     gymRepository = new InMemoryGymsRepository();
-    sut = new SearchGymService(gymRepository);
+    sut = new SearchGymsService(gymRepository);
   });
 
   it("should get checkIns history successfully", async () => {

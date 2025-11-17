@@ -114,7 +114,7 @@ describe("Check In service", () => {
       created_at: new Date(),
     });
 
-    expect(() =>
+    await expect(() =>
       sut.execute({
         userId: "user-1",
         gymId: "gym-2",

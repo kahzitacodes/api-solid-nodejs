@@ -32,10 +32,11 @@ describe('Authenticate service', () => {
     const usersRepository = new InMemoryUsersRepository()
     const sut = new AuthenticateService(usersRepository)
 
-     expect(() => sut.execute({
-      email: 'invalid.email.com',
-      password: '123456'
-    })).rejects.toBeInstanceOf(InvalidCredentialsError)
+     await expect(() => sut.execute({
+        email: 'invalid.email.com',
+        password: '123456'
+      })
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should throw an error for invalid password', async () => {
@@ -45,9 +46,11 @@ describe('Authenticate service', () => {
       password: await bcrypt.hash('123456', 6)
     })
 
-     expect(() => sut.execute({
-      email: 'invalid.email.com',
-      password: '654321'
-    })).rejects.toBeInstanceOf(InvalidCredentialsError)
+    await expect(() => 
+      sut.execute({
+        email: 'invalid.email.com',
+        password: '654321'
+      })
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })
