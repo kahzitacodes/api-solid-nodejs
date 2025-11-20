@@ -5,12 +5,14 @@ import fastifyJwt from '@fastify/jwt'
 import { userRoutes } from './http/controllers/users/users.routes'
 import { authRoutes } from './http/controllers/auth/auth.routes'
 import { gymRoutes } from './http/controllers/gyms/gyms.routes'
+import { checkinsRoutes } from './http/controllers/check-ins/check-ins.routes'
 
 export const app = fastify()
 
 app.register(authRoutes)
 app.register(userRoutes)
 app.register(gymRoutes)
+app.register(checkinsRoutes)
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,

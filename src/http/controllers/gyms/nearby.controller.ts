@@ -1,14 +1,13 @@
 import { z } from 'zod'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeSearchGymsService } from '@/services/factories'
 import { makeGetNearByGymsService } from '@/services/factories/make-get-near-by-gyms-service'
 
 export async function nearby(request: FastifyRequest, reply: FastifyReply) {
-  const nearByGymBodySchema = z.object({
-    latitude: z.number().refine((value) => {
+  const nearByGymQuerySchema = z.object({
+    latitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
-    longitude: z.number().refine((value) => {
+    longitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
   })
@@ -16,7 +15,7 @@ export async function nearby(request: FastifyRequest, reply: FastifyReply) {
   const {
     latitude,
     longitude
-  } = nearByGymBodySchema.parse(request.body)
+  } = nearByGymQuerySchema.parse(request.query)
 
   const getNearByGymsService = makeGetNearByGymsService()
 

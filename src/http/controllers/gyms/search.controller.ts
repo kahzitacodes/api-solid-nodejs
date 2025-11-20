@@ -3,7 +3,7 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { makeSearchGymsService } from '@/services/factories'
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
-  const searchGymBodySchema = z.object({
+  const searchGymQuerySchema = z.object({
     q: z.string(),
     page: z.coerce.number().optional().default(1),
     pageSize: z.coerce.number().optional().default(20),
@@ -13,7 +13,7 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
     q,
     page,
     pageSize
-  } = searchGymBodySchema.parse(request.body)
+  } = searchGymQuerySchema.parse(request.query)
 
   const searchGymsService = makeSearchGymsService()
 
