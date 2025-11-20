@@ -1,5 +1,5 @@
 import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-repository'
-import { GetNearByGymsService } from '../get-near-by-gyms.service'
+import { GetNearByGymsService } from '../gyms/get-near-by-gyms.service'
 
 export function makeGetNearByGymsService() {
   const gymRepository = new PrismaGymsRepository()
