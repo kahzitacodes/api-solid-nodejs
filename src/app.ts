@@ -1,7 +1,8 @@
 import fastify from 'fastify'
+import fastifyJwt from '@fastify/jwt'
+import fastifyCookie from '@fastify/cookie'
 import { ZodError } from 'zod'
 import { env } from './env'
-import fastifyJwt from '@fastify/jwt'
 import { userRoutes } from './http/controllers/users/users.routes'
 import { authRoutes } from './http/controllers/auth/auth.routes'
 import { gymRoutes } from './http/controllers/gyms/gyms.routes'
@@ -13,9 +14,17 @@ app.register(authRoutes)
 app.register(userRoutes)
 app.register(gymRoutes)
 app.register(checkinsRoutes)
+app.register(fastifyCookie)
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'refreshToken',
+    signed: false,
+  },
+  sign: {
+    expiresIn: '10m',
+  }
 })
 
 app.setErrorHandler((error, _, reply) => {

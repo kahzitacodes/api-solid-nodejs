@@ -1,5 +1,6 @@
 import { UsersRepositoryPort } from '@/repositories/users-repository.port'
 import { InvalidCredentialsError } from '@/utils/errors'
+import { ROLE } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
 interface AuthenticateServiceRequest {
@@ -12,6 +13,7 @@ interface AuthenticateServiceResponse {
     id: string
     email: string
     name: string
+    role: ROLE
   }
 }
 
@@ -36,6 +38,7 @@ export class AuthenticateService {
         id: user.id,
         email: user.email,
         name: user.name,
+        role: user.role,
       }
     }
   }
