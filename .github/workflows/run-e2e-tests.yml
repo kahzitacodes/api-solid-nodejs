@@ -34,4 +34,4 @@ jobs:
         run: yarn test:e2e
         env:
           JWT_SECRET: testing
-          DATABASE_URL: "postgresql://postgres:password@localhost:5555/mydb?schema=public"
+          DATABASE_URL: "postgresql://docker:docker@localhost:5555/apisolid?schema=public"
